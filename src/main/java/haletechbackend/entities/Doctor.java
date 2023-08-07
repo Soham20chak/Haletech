@@ -12,14 +12,14 @@ public class Doctor {
     public String qualification;
     public String dob;
     public String specialization;
-    public int phoneno;
+    public String phoneno;
     public String email;
 
     public Doctor() {
 
     }
 
-    public Doctor(String name, String qualification, String dob, String specialization, int phoneno, String email) {
+    public Doctor(String name, String qualification, String dob, String specialization, String phoneno, String email) {
         this.name = name;
         this.qualification = qualification;
         this.dob = dob;
@@ -48,7 +48,7 @@ public class Doctor {
         return specialization;
     }
 
-    public int getPhoneno() {
+    public String getPhoneno() {
         return phoneno;
     }
 
@@ -76,7 +76,7 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    public void setPhoneno(int phoneno) {
+    public void setPhoneno(String phoneno) {
         this.phoneno = phoneno;
     }
 

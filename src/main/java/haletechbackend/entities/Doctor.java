@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Doctor {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    public String id;
     public String name;
     public String qualification;
     public String dob;
@@ -28,7 +28,7 @@ public class Doctor {
         this.email = email;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -56,7 +56,7 @@ public class Doctor {
         return email;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,9 +4,7 @@ package haletechbackend.controllers;
 import haletechbackend.entities.Doctor;
 import haletechbackend.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +15,14 @@ public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    @CrossOrigin("http://localhost:4200/")
     @GetMapping("/doctors")
     public List<Doctor> getAllDoctors(){
         return doctorRepository.findAll();
+    }
+
+    @PostMapping("/doctors")
+    public Doctor createDoctor(@RequestBody Doctor doctor){
+        return doctorRepository.save(doctor);
     }
 }

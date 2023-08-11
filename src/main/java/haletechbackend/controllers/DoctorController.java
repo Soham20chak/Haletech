@@ -5,6 +5,7 @@ import haletechbackend.entities.Doctor;
 import haletechbackend.exceptions.ResourseNotFoundException;
 import haletechbackend.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class DoctorController {
 
     @CrossOrigin("http://localhost:4200/")
     @GetMapping("/doctors/{id}")
-    public Doctor getDoctorById(@PathVariable String id){
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable String id){
         Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));
-        return doctor;
+        return ResponseEntity.ok(doctor);
     }
 }

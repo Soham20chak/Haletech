@@ -21,6 +21,7 @@ public class DoctorController {
         return doctorRepository.findAll();
     }
 
+    @CrossOrigin("http://localhost:4200/")
     @PostMapping("/doctors")
     public Doctor createDoctor(@RequestBody Doctor doctor){
         return doctorRepository.save(doctor);

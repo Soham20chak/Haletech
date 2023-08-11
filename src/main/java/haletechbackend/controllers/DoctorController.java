@@ -2,6 +2,7 @@ package haletechbackend.controllers;
 
 
 import haletechbackend.entities.Doctor;
+import haletechbackend.exceptions.ResourseNotFoundException;
 import haletechbackend.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,13 @@ public class DoctorController {
     @PostMapping("/doctors")
     public Doctor createDoctor(@RequestBody Doctor doctor){
         return doctorRepository.save(doctor);
+    }
+
+
+    @CrossOrigin("http://localhost:4200/")
+    @GetMapping("/doctors/{id}")
+    public Doctor getDoctorById(@PathVariable String id){
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));
+        return doctor;
     }
 }

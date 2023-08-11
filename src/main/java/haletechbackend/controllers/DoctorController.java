@@ -36,4 +36,10 @@ public class DoctorController {
         Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));
         return ResponseEntity.ok(doctor);
     }
+
+    @CrossOrigin("http://localhost:4200/")
+    @PutMapping("/doctors/{id}")
+    public ResponseEntity<Doctor> updateDoctor(@PathVariable String id , @RequestBody Doctor doctor){
+
+    }
 }

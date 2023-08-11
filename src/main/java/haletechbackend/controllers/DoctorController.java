@@ -1,5 +1,5 @@
 package haletechbackend.controllers;
-
+import java.util.*;
 
 import haletechbackend.entities.Doctor;
 import haletechbackend.exceptions.ResourseNotFoundException;
@@ -52,4 +52,14 @@ public class DoctorController {
         return ResponseEntity.ok(updatedDoctor);
 
     }
+
+    @DeleteMapping("/doctors/{id}")
+    public ResponseEntity<Map<String , Boolean>> deleteDoctor(@PathVariable String id){
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));
+        doctorRepository.delete(doctor);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted",Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
 }

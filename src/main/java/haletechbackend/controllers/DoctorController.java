@@ -39,7 +39,17 @@ public class DoctorController {
 
     @CrossOrigin("http://localhost:4200/")
     @PutMapping("/doctors/{id}")
-    public ResponseEntity<Doctor> updateDoctor(@PathVariable String id , @RequestBody Doctor doctor){
+    public ResponseEntity<Doctor> updateDoctor(@PathVariable String id , @RequestBody Doctor doctorDetails){
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));
+        doctor.setName(doctorDetails.getName());
+        doctor.setQualification(doctorDetails.getQualification());
+        doctor.setDob(doctorDetails.getDob());
+        doctor.setEmail(doctorDetails.getEmail());
+        doctor.setPhoneno(doctorDetails.getPhoneno());
+        doctor.setSpecialization(doctorDetails.getSpecialization());
+
+        Doctor updatedDoctor = doctorRepository.save(doctor);
+        return ResponseEntity.ok(updatedDoctor);
 
     }
 }

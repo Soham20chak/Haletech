@@ -53,6 +53,7 @@ public class DoctorController {
 
     }
 
+    @CrossOrigin("http://localhost:4200/")
     @DeleteMapping("/doctors/{id}")
     public ResponseEntity<Map<String , Boolean>> deleteDoctor(@PathVariable String id){
         Doctor doctor = doctorRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Doctor does not exist"));

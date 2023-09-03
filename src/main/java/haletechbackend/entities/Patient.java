@@ -1,6 +1,17 @@
 package haletechbackend.entities;
 
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name="patients")
 public class Patient {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    public String id;
+
+
+
     public String name;
     public String desc;
     public String phoneno;
@@ -13,6 +24,14 @@ public class Patient {
     public String doctor;
 
     public Patient() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

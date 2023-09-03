@@ -8,29 +8,40 @@ import jakarta.persistence.*;
 public class Patient {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public String id;
+    public Long id;
 
 
 
     public String name;
     public String desc;
-    public String phoneno;
+    public String phone;
     public String age;
 
 
 
     public String gender;
-    public String appointment_date;
+    public String appointmentdate;
     public String doctor;
+
+    public Patient(Long id, String name, String desc, String phone, String age, String gender, String appointmentdate, String doctor) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.phone = phone;
+        this.age = age;
+        this.gender = gender;
+        this.appointmentdate = appointmentdate;
+        this.doctor = doctor;
+    }
 
     public Patient() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,12 +61,12 @@ public class Patient {
         this.desc = desc;
     }
 
-    public String getPhoneno() {
-        return phoneno;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneno(String phoneno) {
-        this.phoneno = phoneno;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAge() {
@@ -74,12 +85,12 @@ public class Patient {
         this.gender = gender;
     }
 
-    public String getAppointment_date() {
-        return appointment_date;
+    public String getAppointmentdate() {
+        return appointmentdate;
     }
 
-    public void setAppointment_date(String appointment_date) {
-        this.appointment_date = appointment_date;
+    public void setAppointmentdate(String appointmentdate) {
+        this.appointmentdate = appointmentdate;
     }
 
     public String getDoctor() {
@@ -93,12 +104,13 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
+                "id=" + id +
                 "name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
-                ", phoneno='" + phoneno + '\'' +
+                ", phone='" + phone + '\'' +
                 ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +
-                ", appointment_date='" + appointment_date + '\'' +
+                ", appointmentdate='" + appointmentdate + '\'' +
                 ", doctor='" + doctor + '\'' +
                 '}';
     }

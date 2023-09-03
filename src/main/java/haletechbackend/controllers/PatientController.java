@@ -1,7 +1,5 @@
 package haletechbackend.controllers;
 
-
-import haletechbackend.entities.Doctor;
 import haletechbackend.entities.Patient;
 import haletechbackend.exceptions.ResourseNotFoundException;
 import haletechbackend.repositories.PatientRepository;
@@ -9,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -43,14 +43,24 @@ public class PatientController {
         Patient patient = patientRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Patient does not exist"));
         patient.setName(patientDetails.getName());
         patient.setDesc(patientDetails.getDesc());
-        patient.setPhoneno(patientDetails.getPhoneno());
+        patient.setPhone(patientDetails.getPhone());
         patient.setAge(patientDetails.getAge());
         patient.setGender(patientDetails.getGender());
-        patient.setAppointment_date(patientDetails.getAppointment_date());
+        patient.setAppointmentdate(patientDetails.getAppointmentdate());
         patient.setDoctor(patientDetails.getDoctor());
 
         Patient updatedPatient = patientRepository.save(patient);
         return ResponseEntity.ok(updatedPatient);
 
+    }
+
+    @CrossOrigin("http://localhost:4200/")
+    @DeleteMapping("/patients/{id}")
+    public ResponseEntity<Map<String , Boolean>> deletePatient(@PathVariable String id){
+        Patient patient = patientRepository.findById(id).orElseThrow(()-> new ResourseNotFoundException("Patient does not exist"));
+        patientRepository.delete(patient);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted",Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
